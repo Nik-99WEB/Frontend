@@ -2,8 +2,7 @@
 
 ![Blog Reference](image.png)
 
-**Left Panel:** Blog list view showing blog cards with category, title, and description  
-**Right Panel:** Blog detail view displaying cover image, full content
+
 
 UI IMAGE - ![UI-refernece](ui1.jpeg)
 ![UI-refernece](ui2.jpeg)
