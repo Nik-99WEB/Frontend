@@ -1,6 +1,4 @@
-## UI Reference
-
-Here's a reference design for the blog application layout:
+##As given UI Reference
 
 ![Blog Reference](image.png)
 
