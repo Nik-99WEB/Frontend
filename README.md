@@ -5,7 +5,9 @@
 **Left Panel:** Blog list view showing blog cards with category, title, and description  
 **Right Panel:** Blog detail view displaying cover image, full content
 
-UI IMAGE - ![UI-refernece](ui.jpeg)
+UI IMAGE - ![UI-refernece](ui1.jpeg)
+![UI-refernece](ui2.jpeg)
+![UI-refernece](ui3.jpeg)
 
 > **Note:** This is just a reference design. Your implementation does not have to look exactly like this. 
 
