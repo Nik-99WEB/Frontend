@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+ import { useState } from 'react';
+import BlogList from './components/BlogList';
+import BlogDetail from './components/BlogDetail';
+import CreateBlog from './components/CreateBlog';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [mode, setMode] = useState<'detail' | 'create'>('detail');
+  const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
+
+  const handleSelectBlog = (id: string) => {
+    setSelectedBlogId(id);
+    setMode('detail');
+  };
+
+  const handleCreateNew = () => {
+    setMode('create');
+  };
+
+  const handleBlogCreated = (id: string) => {
+    setSelectedBlogId(id);
+    setMode('detail');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen flex flex-col">
+
+      {/* NAVBAR */}
+      <Navbar />
+
+      {/* PAGE CONTENT */}
+      <div className="flex-1">
+
+        {/* HERO SECTION */}
+        <div className="border-b bg-background">
+          <div className="mx-auto max-w-7xl px-6 py-12 text-center">
+            <h1 className="text-4xl font-extrabold tracking-tight">
+              CA Monk Blog
+            </h1>
+            <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+              Stay updated with the latest trends in finance, accounting, and career growth
+            </p>
+          </div>
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {/* LEFT SIDEBAR */}
+            <div className="lg:col-span-1">
+              <BlogList
+                onSelectBlog={handleSelectBlog}
+                onCreateNew={handleCreateNew}
+                selectedBlogId={selectedBlogId}
+              />
+            </div>
+
+            {/* RIGHT CONTENT */}
+            <div className="lg:col-span-2">
+              {mode === 'detail' && selectedBlogId ? (
+                <BlogDetail blogId={selectedBlogId} />
+              ) : mode === 'create' ? (
+                <CreateBlog onBlogCreated={handleBlogCreated} />
+              ) : (
+                <div className="p-4 text-center text-gray-500">
+                  Select a blog to view details or create a new one.
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {/* FOOTER */}
+      <Footer />
+
+    </div>
+  );
 }
 
-export default App
+export default App;
